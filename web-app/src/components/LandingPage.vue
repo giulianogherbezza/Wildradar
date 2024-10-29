@@ -2,7 +2,7 @@
     <div id="landing-page" class="container">
       <!-- Header mit Logo und Titel -->
       <header>
-        <img src="@/assets/logo.png" alt="Wildradar Logo" class="logo" />
+        <img src="@/assets/Preview.png" alt="Wildradar Logo" class="logo" />
         <h1>Wildradar</h1>
       </header>
   
@@ -29,6 +29,28 @@
   </script>
   
   <style scoped>
+
+#landing-page {
+  position: relative; /* Setzt den Container relativ, um Overlay korrekt zu positionieren */
+  background-image: url("@/assets/Background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden; /* Verhindert Überläufe von Inhalt */
+}
+
+/* Overlay für Transparenz */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2); /* Weißes Overlay mit 40% Transparenz */
+  pointer-events: none; /* Verhindert, dass das Overlay Interaktionen blockiert */
+}
   /* CSS für die Landing-Page */
   .container {
     text-align: center;
@@ -38,7 +60,7 @@
   }
   
   header {
-    background-color: #4CAF50;
+    background-color: #116613;
     padding: 20px;
     color: white;
   }
@@ -62,7 +84,7 @@
   
   .start-button {
     padding: 15px 30px;
-    background-color: #4CAF50;
+    background-color: #116613;
     color: white;
     border: none;
     border-radius: 5px;
@@ -71,7 +93,7 @@
   }
   
   .start-button:hover {
-    background-color: #45a049;
+    background-color: #3c693e;
   }
   </style>
   

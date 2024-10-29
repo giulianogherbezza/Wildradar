@@ -1,5 +1,39 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
+export interface ApiUnfaelleKantonZhUnfaelleKantonZh
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'unfaelle_kanton_zhs';
+  info: {
+    singularName: 'unfaelle-kanton-zh';
+    pluralName: 'unfaelle-kanton-zhs';
+    displayName: 'UnfaelleKantonZH';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    AccidentType: Schema.Attribute.String;
+    AccidentSeverity: Schema.Attribute.String;
+    RoadType: Schema.Attribute.String;
+    AccidentHour_Formattet: Schema.Attribute.Time;
+    Latitude: Schema.Attribute.Decimal;
+    Longitude: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::unfaelle-kanton-zh.unfaelle-kanton-zh'
+    > &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Struct.CollectionTypeSchema {
   collectionName: 'files';
   info: {
@@ -867,6 +901,7 @@ export interface AdminTransferTokenPermission
 declare module '@strapi/strapi' {
   export module Public {
     export interface ContentTypeSchemas {
+      'api::unfaelle-kanton-zh.unfaelle-kanton-zh': ApiUnfaelleKantonZhUnfaelleKantonZh;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;

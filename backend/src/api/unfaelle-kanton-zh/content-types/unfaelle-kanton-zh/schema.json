@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "unfaelle_kanton_zhs",
+  "info": {
+    "singularName": "unfaelle-kanton-zh",
+    "pluralName": "unfaelle-kanton-zhs",
+    "displayName": "UnfaelleKantonZH"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "AccidentType": {
+      "type": "string"
+    },
+    "AccidentSeverity": {
+      "type": "string"
+    },
+    "RoadType": {
+      "type": "string"
+    },
+    "AccidentHour_Formattet": {
+      "type": "time"
+    },
+    "Latitude": {
+      "type": "decimal"
+    },
+    "Longitude": {
+      "type": "decimal"
+    }
+  }
+}
