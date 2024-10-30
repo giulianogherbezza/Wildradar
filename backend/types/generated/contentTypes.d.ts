@@ -15,9 +15,9 @@ export interface ApiUnfaelleKantonZhUnfaelleKantonZh
     AccidentType: Schema.Attribute.String;
     AccidentSeverity: Schema.Attribute.String;
     RoadType: Schema.Attribute.String;
-    AccidentHour_Formattet: Schema.Attribute.Time;
     Latitude: Schema.Attribute.Decimal;
     Longitude: Schema.Attribute.Decimal;
+    AccidentHour_Formatted: Schema.Attribute.Time;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;

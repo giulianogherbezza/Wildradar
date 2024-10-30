@@ -20,14 +20,14 @@
     "RoadType": {
       "type": "string"
     },
-    "AccidentHour_Formattet": {
-      "type": "time"
-    },
     "Latitude": {
       "type": "decimal"
     },
     "Longitude": {
       "type": "decimal"
+    },
+    "AccidentHour_Formatted": {
+      "type": "time"
     }
   }
 }
