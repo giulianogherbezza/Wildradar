@@ -56,55 +56,73 @@ export default {
               .openPopup();
 
             // Wildunfallstellen laden
-            this.fetchAccidentLocations();
+            this.fetchAllAccidentLocations();
           },
           () => {
             // Fehlerbehandlung, wenn Standort nicht zugelassen wird
             console.error(
               "Standortzugriff verweigert oder nicht verfügbar. Verwende Standardkoordinaten."
             );
-            this.fetchAccidentLocations();
+            this.fetchAllAccidentLocations();
           }
         );
       } else {
         console.error("Geolocation wird von diesem Browser nicht unterstützt.");
-        this.fetchAccidentLocations();
+        this.fetchAllAccidentLocations();
       }
     },
-    async fetchAccidentLocations() {
+    async fetchAllAccidentLocations() {
+      let allData = [];
+      let page = 1;
+      const pageSize = 100;
+      let hasMore = true;
+
       try {
-        // Hole die Daten von der Strapi API
-        const response = await axios.get(
-          "http://localhost:1337/api/unfaelle-kanton-zhs"
-        );
-
-        // Überprüfe, ob die Daten korrekt sind
-        if (response.data && response.data.data) {
-          console.log("API-Daten erfolgreich geladen:", response.data.data);
-
-          // Iteriere über die erhaltenen Unfall-Daten
-          response.data.data.forEach((accident) => {
-            // Versuche, die Koordinaten zu extrahieren
-            const { latitude, longitude, AccidentType, AccidentSeverity, RoadType } = accident.attributes;
-
-            if (latitude && longitude) {
-              const accidentLatLng = [parseFloat(latitude), parseFloat(longitude)];
-
-              // Marker hinzufügen für Unfallstellen
-              L.marker(accidentLatLng)
-                .addTo(this.map)
-                .bindPopup(
-                  `<b>Unfalltyp:</b> ${AccidentType}<br>
-                  <b>Schwere:</b> ${AccidentSeverity}<br>
-                  <b>Strassentyp:</b> ${RoadType}`
-                );
-            } else {
-              console.warn("Unfall-Daten ohne Koordinaten gefunden:", accident);
-            }
+        while (hasMore) {
+          const response = await axios.get("http://localhost:1337/api/unfaelle-kanton-zhs", {
+            params: {
+              pagination: {
+                page,
+                pageSize,
+              },
+            },
           });
-        } else {
-          console.error("Unerwartetes Antwortformat:", response);
+
+          const data = response.data.data;
+          allData = allData.concat(data);
+
+          const { pageCount } = response.data.meta.pagination;
+          hasMore = page < pageCount;
+          page += 1;
         }
+
+        console.log("API-Daten erfolgreich geladen:", allData);
+
+        // Iteriere über die erhaltenen Unfall-Daten
+        allData.forEach((accident) => {
+          const { Latitude, Longitude, AccidentType, AccidentSeverity, RoadType } = accident;
+
+          if (Latitude != null && Longitude != null) {
+            const accidentLatLng = [parseFloat(Latitude), parseFloat(Longitude)];
+
+            const accidentLocationIcon = L.icon({
+              iconUrl: require("@/assets/leaflet/marker-icon.png"),
+              iconSize: [25, 41],
+              iconAnchor: [12, 41],
+              popupAnchor: [1, -34],
+            });
+
+            L.marker(accidentLatLng, { icon: accidentLocationIcon })
+              .addTo(this.map)
+              .bindPopup(
+                `<b>Unfalltyp:</b> ${AccidentType}<br>
+                <b>Schwere:</b> ${AccidentSeverity}<br>
+                <b>Strassentyp:</b> ${RoadType}`
+              );
+          } else {
+            console.warn("Unfall-Daten ohne Koordinaten gefunden:", accident);
+          }
+        });
       } catch (error) {
         console.error("Fehler beim Laden der Unfall-Daten:", error);
       }
