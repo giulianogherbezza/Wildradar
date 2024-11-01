@@ -16,6 +16,7 @@ export default {
     return {
       map: null,
       userLatLng: null,
+      accidentLocations: [], // Unfallstellen werden hier gespeichert
     };
   },
   methods: {
@@ -42,21 +43,11 @@ export default {
             ];
             this.map.setView(this.userLatLng, 13);
 
-            // Benutzer-Icon definieren und auf der Karte hinzufügen
-            const userLocationIcon = L.icon({
-              iconUrl: require("@/assets/leaflet/marker-icon.png"),
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-              popupAnchor: [1, -34],
-            });
-
-            L.marker(this.userLatLng, { icon: userLocationIcon })
-              .addTo(this.map)
-              .bindPopup("Ihr Standort")
-              .openPopup();
-
             // Wildunfallstellen laden
-            this.fetchAllAccidentLocations();
+            this.fetchAllAccidentLocations().then(() => {
+              // Benutzer-Icon definieren und Radius überprüfen
+              this.updateUserMarkerWithRadius();
+            });
           },
           () => {
             // Fehlerbehandlung, wenn Standort nicht zugelassen wird
@@ -98,27 +89,12 @@ export default {
 
         console.log("API-Daten erfolgreich geladen:", allData);
 
-        // Iteriere über die erhaltenen Unfall-Daten
+        // Unfall-Daten speichern, ohne sie auf der Karte anzuzeigen
         allData.forEach((accident) => {
-          const { Latitude, Longitude, AccidentType, AccidentSeverity, RoadType } = accident;
+          const { Latitude, Longitude } = accident;
 
           if (Latitude != null && Longitude != null) {
-            const accidentLatLng = [parseFloat(Latitude), parseFloat(Longitude)];
-
-            const accidentLocationIcon = L.icon({
-              iconUrl: require("@/assets/leaflet/marker-icon.png"),
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-              popupAnchor: [1, -34],
-            });
-
-            L.marker(accidentLatLng, { icon: accidentLocationIcon })
-              .addTo(this.map)
-              .bindPopup(
-                `<b>Unfalltyp:</b> ${AccidentType}<br>
-                <b>Schwere:</b> ${AccidentSeverity}<br>
-                <b>Strassentyp:</b> ${RoadType}`
-              );
+            this.accidentLocations.push([parseFloat(Latitude), parseFloat(Longitude)]);
           } else {
             console.warn("Unfall-Daten ohne Koordinaten gefunden:", accident);
           }
@@ -127,12 +103,54 @@ export default {
         console.error("Fehler beim Laden der Unfall-Daten:", error);
       }
     },
+    updateUserMarkerWithRadius() {
+      const radius = 550; // 300 Meter Radius
+
+      // Zählt die Anzahl der Unfälle innerhalb des Radius
+      const accidentCount = this.accidentLocations.filter((location) => {
+        const distance = this.map.distance(this.userLatLng, location);
+        return distance <= radius;
+      }).length;
+
+      // Benutzer-Icon basierend auf der Unfallanzahl definieren
+      let iconUrl;
+      if (accidentCount < 2) {
+        iconUrl = require("@/assets/leaflet/marker-icon-green.png");
+      } else if (accidentCount <= 4) {
+        iconUrl = require("@/assets/leaflet/marker-icon-yellow.png");
+      } else {
+        iconUrl = require("@/assets/leaflet/marker-icon-red.png");
+      }
+
+      const userLocationIcon = L.icon({
+        iconUrl: iconUrl,
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+      });
+
+      // Benutzer-Marker auf der Karte hinzufügen
+      L.marker(this.userLatLng, { icon: userLocationIcon })
+        .addTo(this.map)
+        .bindPopup("Ihr Standort")
+        .openPopup();
+
+      // Radius-Kreis um den Benutzer zeichnen
+      L.circle(this.userLatLng, {
+        radius: radius,
+        color: "#3388ff",
+        fillColor: "#3388ff",
+        fillOpacity: 0.2,
+      }).addTo(this.map);
+    },
   },
   mounted() {
     this.initializeMap();
   },
 };
 </script>
+
+
 
 <style scoped>
 div {
