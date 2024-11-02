@@ -130,18 +130,24 @@ export default {
       });
 
       // Benutzer-Marker auf der Karte hinzufügen
-      L.marker(this.userLatLng, { icon: userLocationIcon })
+      if (this.map) {
+        L.marker(this.userLatLng, { icon: userLocationIcon })
         .addTo(this.map)
-        .bindPopup("Ihr Standort")
-        .openPopup();
+        /* .bindPopup("Ihr Standort")
+        .openPopup(); */
+      }
+      
 
       // Radius-Kreis um den Benutzer zeichnen
-      L.circle(this.userLatLng, {
+      if (this.map) {
+        L.circle(this.userLatLng, {
         radius: radius,
         color: "#3388ff",
         fillColor: "#3388ff",
         fillOpacity: 0.2,
       }).addTo(this.map);
+      } 
+      
     },
   },
   mounted() {
