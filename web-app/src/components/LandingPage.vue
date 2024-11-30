@@ -60,18 +60,21 @@
           <p>Werfen Sie einen Blick auf die Entwicklung unserer App:</p>
           <div class="prototypes-gallery">
             <div class="prototype-item">
-              <img src="@/assets/prototype1.jpg" alt="Prototyp 1" />
-              <p>Prototyp-Ansicht: Startseite</p>
+              <img src="@/assets/registrieren.png" alt="Prototyp 1" />
+              <p>Prototyp-Ansicht: Registrierungsseite</p>
             </div>
             <div class="prototype-item">
-              <img src="@/assets/prototype2.jpg" alt="Prototyp 2" />
-              <p>Prototyp-Ansicht: Kartenübersicht</p>
+              <img src="@/assets/Home.png" alt="Prototyp 2" />
+              <p>Prototyp-Ansicht: Home Bildschirm</p>
             </div>
             <div class="prototype-item">
-              <img src="@/assets/prototype3.jpg" alt="Prototyp 3" />
-              <p>Prototyp-Ansicht: Wildunfallmeldung</p>
+              <img src="@/assets/GPS.png" alt="Prototyp 3" />
+              <p>Prototyp-Ansicht: Wild Warnung im GPS</p>
             </div>
-            <!-- Weitere Bilder können hinzugefügt werden -->
+            <div class="prototype-item">
+              <img src="@/assets/NachNotruf.png" alt="Prototyp 3" />
+              <p>Prototyp-Ansicht: Schritt für Schritt Anleitung, bei Unfallscenario</p>
+            </div>
           </div>
         </div>
       </section>
