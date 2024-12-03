@@ -1,8 +1,17 @@
 <template>
-  <div>
-    <h2>Willkommen auf der Karten-Seite!</h2>
-    <p>Hier wird die Karte mit den Wildunfallstellen angezeigt.</p>
-    <div id="map" style="height: 500px;"></div>
+  <div id="map-page" class="container">
+    <!-- Header mit Titel -->
+    <header>
+      <h1>Wildradar - Kartenansicht</h1>
+    </header>
+
+    <!-- Beschreibung und Karte -->
+    <main>
+      <p class="description">
+        Willkommen auf der Karten-Seite! Hier wird die Karte mit den Wildunfallstellen angezeigt.
+      </p>
+      <div id="map"></div>
+    </main>
   </div>
 </template>
 
@@ -132,22 +141,18 @@ export default {
       // Benutzer-Marker auf der Karte hinzufügen
       if (this.map) {
         L.marker(this.userLatLng, { icon: userLocationIcon })
-        .addTo(this.map)
-        /* .bindPopup("Ihr Standort")
-        .openPopup(); */
+          .addTo(this.map);
       }
-      
 
       // Radius-Kreis um den Benutzer zeichnen
       if (this.map) {
         L.circle(this.userLatLng, {
-        radius: radius,
-        color: "#3388ff",
-        fillColor: "#3388ff",
-        fillOpacity: 0.2,
-      }).addTo(this.map);
-      } 
-      
+          radius: radius,
+          color: "#3388ff",
+          fillColor: "#3388ff",
+          fillOpacity: 0.2,
+        }).addTo(this.map);
+      }
     },
   },
   mounted() {
@@ -156,18 +161,48 @@ export default {
 };
 </script>
 
-
-
 <style scoped>
-div {
+#map-page {
+  position: relative; /* Setzt den Container relativ, um Overlay korrekt zu positionieren */
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden; /* Verhindert Überläufe von Inhalt */
+}
+
+.container {
   text-align: center;
-  margin-top: 20px;
   font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+header {
+  background-color: #116613;
+  padding: 20px;
+  color: white;
+}
+
+main {
+  margin-top: 20px;
+  padding: 0 20px;
+}
+
+.description {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
 }
 
 #map {
   width: 100%;
   height: 500px;
   margin-top: 20px;
+  border: 3px solid #116613;
+  border-radius: 10px;
 }
 </style>
+

@@ -42,13 +42,14 @@
               <p>Erhalten Sie Warnungen über Wildunfall-Hotspots in Echtzeit.</p>
             </li>
             <li>
-              <h3>GPS-Standorterkennung</h3>
-              <p>Teilen Sie Ihren Standort, um die Gefahr von Wildunfällen zu minimieren.</p>
+              <h3>Unfallmeldung</h3>
+              <p>Notrufnummer direkt aus der App alarmieren</p>
             </li>
             <li>
-              <h3>Detaillierte Unfallkarte</h3>
-              <p>Sehen Sie gefährliche Zonen in Ihrer Umgebung auf einen Blick.</p>
+              <h3>Schritte nach dem Unfall</h3>
+              <p>Erhalten Sie eine Schritt für Schritt Anleitung, wie sie sich nach einem Wildtierunfall verhalten sollen.</p>
             </li>
+         
           </ul>
         </div>
       </section>
@@ -75,6 +76,7 @@
               <img src="@/assets/NachNotruf.png" alt="Prototyp 3" />
               <p>Prototyp-Ansicht: Schritt für Schritt Anleitung, bei Unfallscenario</p>
             </div>
+       
           </div>
         </div>
       </section>
@@ -82,7 +84,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>&copy; 2023 Wildradar. Alle Rechte vorbehalten.</p>
+      <p>&copy; 2024 Wildradar. Alle Rechte vorbehalten. WPR/WBCS: Gruppe 03 Anouk Perez, Florian Beutler, Giuliano Gherbezza, Isabelle Oertle</p>
     </footer>
   </div>
 </template>
