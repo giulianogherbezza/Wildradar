@@ -9,7 +9,6 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#features">Funktionen</a></li>
             <li><a href="#prototypes">Prototyp</a></li>
-            <li><a href="#contact">Kontakt</a></li>
           </ul>
         </nav>
       </div>
@@ -22,8 +21,9 @@
         <div class="hero-content">
           <h1>Wildradar - Vermeiden Sie Wildunfälle</h1>
           <p>
-            Wildradar hilft Ihnen dabei, gefährliche Unfallstellen zu erkennen und sicher zu navigieren.
-            Mit einer intuitiven Kartenfunktion können Sie alle gefährdeten Zonen einfach einsehen und sich schützen.
+            Wildradar hilft Ihnen dabei, gefährliche Unfallstellen zu erkennen
+            und sicher zu navigieren. Mit einer intuitiven Kartenfunktion können
+            Sie alle gefährdeten Zonen einfach einsehen und sich schützen.
           </p>
           <!-- Start Button als Router-Link -->
           <router-link to="/map">
@@ -39,7 +39,9 @@
           <ul class="features-list">
             <li>
               <h3>Echtzeit-Warnungen</h3>
-              <p>Erhalten Sie Warnungen über Wildunfall-Hotspots in Echtzeit.</p>
+              <p>
+                Erhalten Sie Warnungen über Wildunfall-Hotspots in Echtzeit.
+              </p>
             </li>
             <li>
               <h3>Unfallmeldung</h3>
@@ -47,9 +49,11 @@
             </li>
             <li>
               <h3>Schritte nach dem Unfall</h3>
-              <p>Erhalten Sie eine Schritt für Schritt Anleitung, wie sie sich nach einem Wildtierunfall verhalten sollen.</p>
+              <p>
+                Erhalten Sie eine Schritt für Schritt Anleitung, wie sie sich
+                nach einem Wildtierunfall verhalten sollen.
+              </p>
             </li>
-         
           </ul>
         </div>
       </section>
@@ -60,23 +64,15 @@
           <h2>Unser Prototyp</h2>
           <p>Werfen Sie einen Blick auf die Entwicklung unserer App:</p>
           <div class="prototypes-gallery">
-            <div class="prototype-item">
-              <img src="@/assets/registrieren.png" alt="Prototyp 1" />
-              <p>Prototyp-Ansicht: Registrierungsseite</p>
+            <div>
+              <iframe
+                style="border: 1px solid rgba(0, 0, 0, 0.1)"
+                width="800"
+                height="450"
+                src="https://embed.figma.com/proto/sAxUmdIp0YJSidUJR1xZfz/Wildradar-WPR2?node-id=21-4115&embed-host=share"
+                allowfullscreen
+              ></iframe>
             </div>
-            <div class="prototype-item">
-              <img src="@/assets/Home.png" alt="Prototyp 2" />
-              <p>Prototyp-Ansicht: Home Bildschirm</p>
-            </div>
-            <div class="prototype-item">
-              <img src="@/assets/GPS.png" alt="Prototyp 3" />
-              <p>Prototyp-Ansicht: Wild Warnung im GPS</p>
-            </div>
-            <div class="prototype-item">
-              <img src="@/assets/NachNotruf.png" alt="Prototyp 3" />
-              <p>Prototyp-Ansicht: Schritt für Schritt Anleitung, bei Unfallscenario</p>
-            </div>
-       
           </div>
         </div>
       </section>
@@ -84,7 +80,10 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>&copy; 2024 Wildradar. Alle Rechte vorbehalten. WPR/WBCS: Gruppe 03 Anouk Perez, Florian Beutler, Giuliano Gherbezza, Isabelle Oertle</p>
+      <p>
+        &copy; 2024 Wildradar. Alle Rechte vorbehalten. WPR/WBCS: Gruppe 03
+        Anouk Perez, Florian Beutler, Giuliano Gherbezza, Isabelle Oertle
+      </p>
     </footer>
   </div>
 </template>
@@ -106,7 +105,12 @@ export default {
 
 /* Header */
 .header {
-  background-color: rgba(0, 0, 0, 0.7); /* Halbtransparenter Hintergrund für den Header */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.7
+  ); /* Halbtransparenter Hintergrund für den Header */
   padding: 20px;
 }
 
@@ -249,5 +253,3 @@ export default {
   margin-top: 40px;
 }
 </style>
-
-  
