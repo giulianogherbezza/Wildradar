@@ -9,7 +9,6 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#features">Funktionen</a></li>
             <li><a href="#prototypes">Prototyp</a></li>
-            <li><a href="#contact">Kontakt</a></li>
           </ul>
         </nav>
       </div>
