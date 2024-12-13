@@ -59,3 +59,9 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 ---
 
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+
+## Server starten
+
+Um den Vite Server zu starten, gehen Sie in den Frontend Ordner und führen Sie den Befehl "npm run serve" aus.
+
+Um das Strapi Backend zu starten, gehen Sie in den Backend Ordner und führen Sie den Befehl "npm run develop" aus.
